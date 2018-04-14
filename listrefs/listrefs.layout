@@ -1,17 +1,17 @@
-<tr id="\format{\bibtexkey}" data-reftype="\bibtextype" class="entry">
-	<td>\begin{author}\format[Authors(LastFirst,NoPunc,InitialsNoSpace),HTMLChars]{\author}\end{author} (\year), <i>"\format[HTMLChars]{\title}"</i>\begin{journal}, \format[HTMLChars]{\journal}.\end{journal}\begin{booktitle}, In \format[HTMLChars]{\booktitle}.\end{booktitle}\begin{howpublished}, \howpublished.\end{howpublished}\begin{school}. Thesis at: \format[HTMLChars]{\school}.\end{school}\begin{address} \format[HTMLChars]{\address}\end{address}\begin{month}, \format[HTMLChars]{\month}, \year.\end{month} \begin{volume} Vol. \volume\end{volume}\begin{number}(\format[FormatPagesForHTML]{\number})\end{number}\begin{pages}, pp. \format[FormatPagesForHTML]{\pages}.\end{pages}\begin{publisher} \format[HTMLChars]{\publisher}.\end{publisher}
+<li>
+  <div id="\format{\bibtexkey}" data-reftype="\bibtextype" class="bibitem">\begin{author}\format[Authors(FirstFirst,MiddleInitial,NoPunc),HTMLChars]{\author}\end{author}, "\format[HTMLChars]{\title}"\begin{journal}, <span class="bibitem-journal">\format[HTMLChars]{\journal},</span>\end{journal}\begin{booktitle}, in <span class="bibitem-inproceedings">\format[HTMLChars]{\booktitle},</span>\end{booktitle}\begin{howpublished}, \howpublished.\end{howpublished}\begin{school}. Thesis at: \format[HTMLChars]{\school}.\end{school}\begin{address} \format[HTMLChars]{\address}\end{address}\begin{month}, \format[HTMLChars]{\month}, \year\end{month}\begin{volume} vol. \volume\end{volume}\begin{number}, no. \format[FormatPagesForHTML]{\number}\end{number}\begin{pages}, pp. \format[FormatPagesForHTML]{\pages}\end{pages}.
   <p class="infolinks">\begin{abstract}[<a href="javascript:toggleInfo('\format{\bibtexkey}','abstract')">Abstract</a>]\end{abstract}\begin{review} [<a href="javascript:toggleInfo('\format{\bibtexkey}','review')">Review</a>] \end{review} [<a href="javascript:toggleInfo('\format{\bibtexkey}','bibtex')">BibTeX</a>]\begin{doi} [<a href="\format[DOICheck]{\doi}" target="_blank">DOI</a>]\end{doi}\begin{url} [<a href="\format{\url}" target="_blank">URL</a>]\end{url}\begin{file}\format[FileLink(pdf),\WrapContent("[<a href="," target="_blank">PDF</a>]")]{\file}\end{file}</p>
-	</td>
-</tr>\begin{abstract}
-<tr id="abs_\format{\bibtexkey}" class="abstract noshow">
-	<td><b>Abstract</b>: \format[HTMLChars]{\abstract}</td>
-</tr>\end{abstract}\begin{review}
-<tr id="rev_\format{\bibtexkey}" class="review noshow">
-	<td><b>Review</b>: \format[HTMLChars]{\review}</td>
-</tr>\end{review}
-<tr id="bib_\format{\bibtexkey}" class="bibtex noshow">
-<td><b>BibTeX</b>:
-<pre>
+  </div>
+\begin{abstract}
+<div id="abs_\format{\bibtexkey}" class="abstract noshow">
+	<strong>Abstract</strong>: \format[HTMLChars]{\abstract}
+</div>\end{abstract}\begin{review}
+<div id="rev_\format{\bibtexkey}" class="review noshow">
+	<td><strong>Review</strong>: \format[HTMLChars]{\review}</td>
+</div>\end{review}
+<div id="bib_\format{\bibtexkey}" class="bibtex noshow">
+<strong>BibTeX</strong>:
+<pre class="bib">
 @\format[ToLowerCase]{\bibtextype}{\bibtexkey,\begin{author}
   author = {\format[HTMLChars]{\author}}\end{author}\begin{editor},
   editor = {\format[HTMLChars]{\editor}}\end{editor}\begin{title},
@@ -29,5 +29,5 @@
   url = {\format[HTMLChars]{\url}}\end{url}\begin{doi},
   doi = {\format[DOIStrip]{\doi}}\end{doi}
 }
-</pre></td>
-</tr>
+</pre></div>
+</li>

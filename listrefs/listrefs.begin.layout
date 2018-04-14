@@ -63,7 +63,7 @@ function initSearch() {
 function loadTableData() {
 	// find table and appropriate rows
 	searchTable = document.getElementById('qs_table');
-	var allRows = searchTable.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+	var allRows = searchTable.getElementsByTagName('div');
 
 	// split all rows into entryRows and infoRows (e.g. abstract, review, bibtex)
 	entryRows = new Array(); infoRows = new Array(); absRows = new Array(); revRows = new Array();
@@ -75,7 +75,7 @@ function loadTableData() {
 	RefTypeKeys = new Array();
 
 	for (var i=0, k=0, j=0; i<allRows.length;i++) {
-		if (allRows[i].className.match(/entry/)) {
+		if (allRows[i].className.match(/bibitem/)) {
 			entryRows[j] = allRows[i];
 			entryRowsData[j] = stripDiacritics(getTextContent(allRows[i]));
 			allRows[i].id ? BibTeXKeys[j] = allRows[i].id : allRows[i].id = 'autokey_'+j;
@@ -149,10 +149,11 @@ function quickSearch(){
 			}
 			
 			if (found){
-				cRow.className = 'entry show';
+				cRow.className = 'bibitem show';
 				hits++;
 			} else {
-				cRow.className = 'entry noshow';
+				cRow.className = 'bibitem noshow';
+				cRow.parentNode.className = 'noshow';
 			}
 		}
 	}
@@ -236,9 +237,9 @@ function toggleInfo(articleid,info) {
 	// highlight original entry
 	if(entry) {
 		if (revshow || absshow || bibshow) {
-		entry.className = 'entry highlight show';
+		entry.className = 'bibitem highlight show';
 		} else {
-		entry.className = 'entry show';
+		entry.className = 'bibitem show';
 		}
 	}
 	
@@ -275,7 +276,10 @@ function getTextContent(node) {
 
 function showAll(){
 	closeAllInfo();
-	for (var i = 0; i < numEntries; i++){ entryRows[i].className = 'entry show'; }
+	for (var i = 0; i < numEntries; i++){
+		entryRows[i].className = 'bibitem show';
+		entryRows[i].parentNode.className = 'show';
+	}
 }
 
 function closeAllInfo(){
@@ -369,19 +373,37 @@ div#settings.hidden {display:none;}
 .invalidsearch { background-color: red; }
 input[type="button"] { background-color: #efefef; border: 1px #2E2E2E solid;}
 
-table { border: 1px gray none; width: 100%; empty-cells: show; border-spacing: 0em 0.1em; margin: 1em 0em; }
-th, td { border: none; padding: 0.5em; vertical-align: top; text-align: justify; }
+li a { color: navy; text-decoration: none; }
+li a:hover  { text-decoration: underline; }
 
-td a { color: navy; text-decoration: none; }
-td a:hover  { text-decoration: underline; }
+li.noshow { display: none; }
+li div.noshow { display: none;}
+li div.highlight { background-color: #EFEFEF; border-top: 2px #2E2E2E solid; font-weight: bold; }
+li div.abstract, li div.review, li div.bibtex { background-color: #EFEFEF; text-align: justify; }
 
-tr.noshow { display: none;}
-tr.highlight td { background-color: #EFEFEF; border-top: 2px #2E2E2E solid; font-weight: bold; }
-tr.abstract td, tr.review td, tr.bibtex td { background-color: #EFEFEF; text-align: justify; border-bottom: 2px #2E2E2E solid; }
-tr.nextshow td { border-bottom-style: none; }
-
-tr.bibtex pre { width: 100%; overflow: auto; white-space: pre-wrap;}
+li div.bibtex pre { width: 100%; overflow: auto; white-space: pre-wrap;}
 p.infolinks { margin: 0.3em 0em 0em 0em; padding: 0px; }
+
+.bib {
+    font-size: 12px;
+    clear: both;
+    margin: 0;
+    padding: 1em;
+    overflow: auto;
+}
+
+.bibitem {
+    clear: both;
+}
+
+.bibitem-journal, .bibitem-inproceedings, .bibitem-inbook {
+    font-style: italic;
+}
+
+.bibitem-award {
+    color: red;
+    hyphens: none;
+}
 
 @media print {
 	p.infolinks, #qs_settings, #quicksearch, t.bibtex { display: none !important; }
@@ -404,5 +426,5 @@ p.infolinks { margin: 0.3em 0em 0em 0em; padding: 0px; }
 </ul>
 </div>
 </form>
-<table id="qs_table" border="1">
-<tbody>
+<div id="qs_table" border="1">
+<ol>
